@@ -1,0 +1,23 @@
+{
+  "name": "functional-programming",
+  "version": "1.0.0",
+  "description": "Basics of D3 datavisualisation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chazzers/functional-programming.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Chazzers/functional-programming/issues"
+  },
+  "homepage": "https://github.com/Chazzers/functional-programming#readme",
+  "dependencies": {
+    "d3": "^5.12.0",
+    "fetch": "^1.1.0"
+  }
+}
