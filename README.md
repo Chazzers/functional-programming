@@ -3,7 +3,7 @@ Basics of D3 datavisualisation
 
 ## Installation
 
-![zwaardenchart](https://imgur.com/o46H9s0)
+![zwaardenchart](images/zwaaardenchart.jpg)
 
 To install the project use npm install.
 
