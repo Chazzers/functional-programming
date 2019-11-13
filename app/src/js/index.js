@@ -107,7 +107,17 @@ function visualizeData(data) {
 
 	const nodes = hierarchy(data)
 		.sum(function(d){ return d.Count });
+
+	const node = svg.selectAll(".node")
+		.data(bubble(nodes).descendants())
+		.enter()
+		.filter(function(d){
+			return !d.children;
+		})
+		.append("g")
+
 	}
+
 function printData(data) {
 	console.log(data);
 }
