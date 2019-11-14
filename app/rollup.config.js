@@ -5,6 +5,10 @@ import json from 'rollup-plugin-json';
 import { terser } from 'rollup-plugin-terser';
 import serve from 'rollup-plugin-serve';
 import copy from 'rollup-plugin-copy';
+import scss from 'rollup-plugin-scss';
+import livereload from 'rollup-plugin-livereload';
+import path from 'path';
+
 
 export default {
 	input: 'src/js/index.js',
@@ -24,21 +28,23 @@ export default {
 		json(),
 		commonjs(),
 		terser(),
-		serve({
-			open: true,
-			contentBase: 'dist',
-			host: 'localhost',
-			port: 5000
-		}),
 		copy({
 			targets: [
 				{
 					src: 'src/*.html', dest: 'dist'
 				},
 				{
-					src: 'src/styles/*.css', dest: 'dist/styles'
+					src: 'src/images/*', dest: 'dist/images'
 				}
 			]
-		})
+		}),
+		serve({
+			open: true,
+			contentBase: 'dist',
+			host: 'localhost',
+			port: 5000
+		}),
+		scss(),
+		livereload(),
 	]
 }

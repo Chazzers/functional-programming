@@ -1,7 +1,5 @@
 import { json, nest, create, select, selectAll, pack, scaleOrdinal, schemeCategory10, hierarchy } from 'd3';
-import * as d3 from 'd3';
-
-console.log(d3);
+import "../styles/main.scss"
 
 const url =
 	"https://api.data.netwerkdigitaalerfgoed.nl/datasets/ivo/NMVW/services/NMVW-32/sparql";
@@ -88,25 +86,35 @@ function deNestProperties(data) {
 }
 function transformData(data) {
 	let newData = nest().key( d => d.type).entries(data);
+	newData.forEach(item => item.key = item.key[0].toUpperCase() + item.key.slice(1));
 	newData.forEach(item => item.amount = item.values.length);
 	return newData;
 }
 function visualizeData(data) {
-	const diameter = 600;
+	console.log(data);
+	const dataset = {
+		children: data
+	}
+	console.log(dataset);
+	const height = window.innerHeight - 100;
+	const width = window.innerWidth - 100;
+
 	const color = scaleOrdinal(schemeCategory10);
 
-	const bubble = pack(data)
-		.size([diameter, diameter])
-		.padding(1.5);
+	const bubble = pack(dataset)
+		.size([width, height])
+		.padding(10);
 
 	const svg = select("#svgcontainer")
 		.append("svg")
-		.attr("width", diameter)
-		.attr("height", diamter)
+		.attr("width", width)
+		.attr("height", height)
 		.attr("class", "bubble");
 
-	const nodes = hierarchy(data)
-		.sum(function(d){ return d.Count });
+	const nodes = hierarchy(dataset)
+		.sum(function(d){ return d.amount });
+
+	console.log(nodes);
 
 	const node = svg.selectAll(".node")
 		.data(bubble(nodes).descendants())
@@ -115,7 +123,57 @@ function visualizeData(data) {
 			return !d.children;
 		})
 		.append("g")
+		.attr("class", "node")
+            .attr("transform", function(d) {
+                return "translate(" + d.x + "," + d.y + ")";
+            });
+        node.append("title")
+            .text(function(d) {
+				console.log(d);
+                return d.data.key + ": " + d.data.amount;
+            });
 
+        node.append("g").attr("class", "bubble-container").append("circle")
+            .attr("r", function(d) {
+                return d.r;
+            })
+            .style("fill", function(d,i) {
+                return color(i);
+            });
+
+        node.select(".bubble-container").append("text")
+            .attr("dy", ".2em")
+            .style("text-anchor", "middle")
+            .text(function(d) {
+                return d.data.key
+            })
+            .attr("font-family", "sans-serif")
+            .attr("font-size", function(d){
+				console.log(d.r);
+				if(d.r <= 20) {
+					return 0;
+				} else if(d.r <= 50 && d.r >= 21){
+					return d.r/3;
+				} else {
+                return d.r/4;
+			}
+            })
+            .attr("fill", "white")
+
+        // node.append("text")
+        //     .attr("dy", "1.3em")
+        //     .style("text-anchor", "middle")
+        //     .text(function(d) {
+        //         return d.data.amount;
+        //     })
+        //     .attr("font-family",  "Gill Sans", "Gill Sans MT")
+        //     .attr("font-size", function(d){
+        //         return d.r/5;
+        //     })
+        //     .attr("fill", "white");
+
+        select(self.frameElement)
+            .style("height", height + "px");
 	}
 
 function printData(data) {
