@@ -6,6 +6,7 @@ Visualisation of data through the database of the 'NMVW' and the JavaScript libr
 This app visualises all of the weapons of the Japanese collection of the database in a bubblechart. The app uses the JavaScript library D3 and the database of the "Nationaal Museum Van Wereldculturen" (NMVW).
 
 ![Bubble chart - Japanese Weapons](https://user-images.githubusercontent.com/33430669/68870240-db5b3600-06fa-11ea-83ca-91bf6d44462e.png)
+
 Source: [Nickelback](https://github.com/hubot-scripts/hubot-look-at-this-graph/blob/master/README.md)
 
 ## Installation
