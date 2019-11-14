@@ -15,11 +15,11 @@ To install the project use npm install.
 
 `npm install`
 
-To create a development environment
+To create a development environment use:
 
 `npm run dev`
 
-To build for production
+To build for production use:
 
 `npm run build`
 
@@ -32,3 +32,4 @@ Click [here](https://github.com/Chazzers/functional-programming/wiki) to read th
 * The NMVW
 * D3 - JavaScript library
 * [Simple Bubble Chart D3 v4](https://bl.ocks.org/alokkshukla/3d6be4be0ef9f6977ec6718b2916d168)
+* [Clean data assignment](https://github.com/Chazzers/functional-programming/tree/master/clean-data-assignment)
