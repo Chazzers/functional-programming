@@ -36,40 +36,6 @@ json(connectionString)
 	.then(data => visualizeData(data))
 	.then(data => printData(data));
 
-
-// getData();
-
-// function getData() {
-// 	return fetch(connectionString)
-// 		.then(data => makeJson(data))
-// 		.then(data => showResults(data))
-// 		.then(data => loopData(data))
-// 		.then(data => console.log(data))
-// 	// 	.then(json => {
-// 	// 		console.log(json);
-// 	//
-// 	// 		let { bindings } = json.results;
-// 	//
-// 	// 		for (let i = 0; i < bindings.length; i++) {
-// 	// 			let item = bindings[i];
-// 	// 			item.cho = item.cho.value;
-// 	// 			item.placeName = item.placeName.value;
-// 	// 			item.title = item.title.value;
-// 	// 			item.type = item.type.value;
-// 	// 		}
-// 	//
-// 	// 		console.log(bindings);
-// 	// 		return bindings;
-// 	// });
-// // }
-// // function loopItems() {
-// //
-// }
-
-// function makeJson(data) {
-// 	return data.json();
-// }
-
 function showResults(data) {
 	return data.results.bindings;
 }
@@ -91,11 +57,9 @@ function transformData(data) {
 	return newData;
 }
 function visualizeData(data) {
-	console.log(data);
 	const dataset = {
 		children: data
 	}
-	console.log(dataset);
 	const height = window.innerHeight - 100;
 	const width = window.innerWidth - 100;
 
@@ -113,8 +77,6 @@ function visualizeData(data) {
 
 	const nodes = hierarchy(dataset)
 		.sum(function(d){ return d.amount });
-
-	console.log(nodes);
 
 	const node = svg.selectAll(".node")
 		.data(bubble(nodes).descendants())
@@ -175,7 +137,3 @@ function visualizeData(data) {
         select(self.frameElement)
             .style("height", height + "px");
 	}
-
-function printData(data) {
-	console.log(data);
-}
