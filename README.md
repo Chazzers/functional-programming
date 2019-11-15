@@ -11,6 +11,10 @@ Source: [Nickelback](https://github.com/hubot-scripts/hubot-look-at-this-graph/b
 
 ## Installation
 
+This project makes use of Rollup to build the app. If you want to run the app you will have to install Rollup globally like this:
+
+`npm install rollup -g`
+
 To install the project use npm install.
 
 `npm install`
