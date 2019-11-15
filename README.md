@@ -37,3 +37,4 @@ Click [here](https://github.com/Chazzers/functional-programming/wiki) to read th
 * D3 - JavaScript library
 * [Simple Bubble Chart D3 v4](https://bl.ocks.org/alokkshukla/3d6be4be0ef9f6977ec6718b2916d168)
 * [Clean data assignment](https://github.com/Chazzers/functional-programming/tree/master/clean-data-assignment)
+- Martijn Keesmaat voor de motivatie!!! Het kon niet zonder hem
