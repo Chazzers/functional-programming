@@ -13,6 +13,29 @@ Source: [Nickelback](https://github.com/hubot-scripts/hubot-look-at-this-graph/b
 
 To get data from the NMVW database i had to make use of SPARQL. SPARQL (SPARQL Protocol And RDF Query Language) is a RDF query language that is used to get RDF-based data through queries.
 
+```javascript
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX edm: <http://www.europeana.eu/schemas/edm/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?cho ?placeName ?title ?type WHERE {
+ <https://hdl.handle.net/20.500.11840/termmaster6917> skos:narrower* ?place .
+ ?place skos:prefLabel ?placeName .
+
+ VALUES ?type { "zwaard" "Zwaard" "boog" "Boog" "lans" "Lans" "mes" "knots" "Piek" "vechtketting" "dolk" "bijl" "strijdzeis" }
+
+
+  ?cho 	dct:spatial ?place ;
+		dc:title ?title ;
+		dc:type ?type .
+		FILTER langMatches(lang(?title), "ned") .
+}
+```
+
 Source: [Wikipedia SPARQL](https://nl.wikipedia.org › wiki › SPARQL)
 
 ## Getting started
